@@ -1,0 +1,438 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "04aec173-0bae-4d2d-b913-603841486831",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Q1: What is the difference between a t-test and a z-test? Provide an example scenario where you would use each type of test.\n",
+    "\n",
+    "Z-test: A z-test is used when the population standard deviation is known, or the sample size is large (typically n > 30). It compares a sample mean to a population mean and determines if the difference is statistically significant.\n",
+    "Example: Testing whether the mean weight of apples from a farm (population) differs significantly from the national average weight of apples (population mean) when the population standard deviation is known.\n",
+    "\n",
+    "T-test: A t-test is used when the population standard deviation is unknown, or the sample size is small (typically n < 30). It compares a sample mean to a population mean and determines if the difference is statistically significant.\n",
+    "Example: Testing whether the mean test scores of students who received a new teaching method (sample) differ significantly from the national average test score (population mean) when the population standard deviation is unknown."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "394fb170-dfbe-42f6-8223-42be33e24076",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Q2: Differentiate between one-tailed and two-tailed tests.\n",
+    "\n",
+    "One-tailed test: In a one-tailed test, the null hypothesis specifies the direction of the effect (e.g., greater than, less than). The critical region is on one side of the sampling distribution. It is used when the research hypothesis predicts a specific direction of effect.\n",
+    "Example: Testing whether a new drug increases blood pressure (one-tailed upper test) or decreases blood pressure (one-tailed lower test).\n",
+    "\n",
+    "Two-tailed test: In a two-tailed test, the null hypothesis does not specify the direction of the effect. The critical region is divided between both tails of the sampling distribution. It is used when the research hypothesis does not predict a specific direction of effect.\n",
+    "Example: Testing whether a new teaching method affects student performance (two-tailed test)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "92000eee-39d7-47a1-b65c-efc15eadd36d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Population mean estimated with 95% confidence interval: 486.1407070887437 - 513.8592929112564\n"
+     ]
+    }
+   ],
+   "source": [
+    "Q3: Explain the concept of Type 1 and Type 2 errors in hypothesis testing. Provide an example scenario for each type of error.\n",
+    "\n",
+    "Type 1 error (False Positive): Type 1 error occurs when the null hypothesis is incorrectly rejected when it is actually true. It represents the probability of observing a significant result when there is no true effect.\n",
+    "Example: Concluding that a patient has a disease (alternative hypothesis) when they do not actually have the disease (null hypothesis).\n",
+    "\n",
+    "Type 2 error (False Negative): Type 2 error occurs when the null hypothesis is not rejected when it is actually false. It represents the probability of failing to observe a significant result when there is a true effect.\n",
+    "Example: Failing to detect a significant difference in test scores between two groups (alternative hypothesis) when there is actually a difference (null hypothesis)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f87a4a3c-0560-4d80-9ea9-e03d6062f3e9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Bayes' Theorem Explained with an Example\n",
+    "Bayes' theorem is a fundamental concept in probability theory that allows you to update your belief (probability) about an event based on new evidence. It describes the conditional probability of event A occurring given that event B has already happened.\n",
+    "\n",
+    "Here's the formula:\n",
+    "\n",
+    "P(A | B) = P(B | A) * P(A) / P(B)\n",
+    "where:\n",
+    "\n",
+    "P(A | B) is the probability of event A occurring given that event B has already happened (posterior probability)\n",
+    "P(B | A) is the probability of event B occurring given that event A is true (likelihood)\n",
+    "P(A) is the prior probability of event A happening before any new evidence is considered\n",
+    "P(B) is the total probability of event B happening, regardless of whether A happens or not (marginal probability)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "dc4bbd02-ab7f-4d68-a52f-aa9f12c7a9bd",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Q5: What is a confidence interval? How to calculate the confidence interval, explain with an example.\n",
+    "\n",
+    "A confidence interval is a range of values that is likely to contain the true population parameter with a specified level of confidence. It provides a measure of the precision or uncertainty associated with a sample statistic.\n",
+    "\n",
+    "To calculate a confidence interval:\n",
+    "\n",
+    "Determine the sample statistic (e.g., sample mean, sample proportion).\n",
+    "Choose a confidence level (e.g., 95%, 99%).\n",
+    "Determine the appropriate critical value based on the confidence level and the distribution (e.g., z-score for normal distribution, t-score for t-distribution).\n",
+    "Calculate the margin of error using the standard error of the statistic.\n",
+    "Construct the confidence interval by adding and subtracting the margin of error from the sample statistic.\n",
+    "Example: Suppose we want to estimate the average height of adult males in a population. We take a random sample of 100 adult males and find that the sample mean height is 175 cm with a standard deviation of 5 cm. Calculate the 95% confidence interval for the population mean height."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "da1b61e9-3ed3-4f81-93dc-a5ce9d8c6c79",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "95% confidence interval for the population mean height: 174.02001800772996 - 175.97998199227004\n"
+     ]
+    }
+   ],
+   "source": [
+    "import scipy.stats as stats\n",
+    "\n",
+    "sample_mean = 175\n",
+    "sample_std_dev = 5\n",
+    "sample_size = 100\n",
+    "confidence_level = 0.95\n",
+    "\n",
+    "# Calculate the margin of error\n",
+    "margin_of_error = stats.norm.ppf((1 + confidence_level) / 2) * (sample_std_dev / math.sqrt(sample_size))\n",
+    "\n",
+    "# Calculate the confidence interval\n",
+    "lower_bound = sample_mean - margin_of_error\n",
+    "upper_bound = sample_mean + margin_of_error\n",
+    "\n",
+    "print(\"95% confidence interval for the population mean height:\", lower_bound, \"-\", upper_bound)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "faa85bce-78dc-4da4-b2ab-f935773730f9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Q6. Use Bayes' Theorem to calculate the probability of an event occurring given prior knowledge of the event's probability and new evidence. Provide a sample problem and solution."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "31c568c8-5c6e-4236-aaa0-35a70a6a89b7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Probability of an Event with Bayes' Theorem and Example\n",
+    "Here's how to calculate the probability of an event occurring (posterior probability) given prior knowledge and new evidence using Bayes' theorem, along with a sample problem and solution:\n",
+    "\n",
+    "Formula:\n",
+    "\n",
+    "P(A | B) = P(B | A) * P(A) / P(B)\n",
+    "where:\n",
+    "\n",
+    "P(A | B): Posterior probability of event A occurring given evidence B\n",
+    "P(B | A): Likelihood of observing evidence B if event A happened\n",
+    "P(A): Prior probability of event A happening before any new evidence\n",
+    "P(B): Total probability of evidence B happening, regardless of A\n",
+    "Sample Problem:\n",
+    "\n",
+    "A company produces two types of laptops, Model A and Model B, in a ratio of 3:2. A quality control test identifies defective laptops with 95% accuracy for Model A and 90% accuracy for Model B. You randomly select a laptop from the production line, and the test identifies it as defective. What is the probability that the selected laptop is Model A?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "07a69bfe-d271-4f15-8098-e2537e68490c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Q7. Calculate the 95% confidence interval for a sample of data with a mean of 50 and a standard deviation of 5. Interpret the results."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fa2e70f4-625b-4bf9-bdb0-31f7e82bf156",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Calculating the 95% Confidence Interval\n",
+    "For a sample mean of 50 and a standard deviation of 5, the 95% confidence interval can be calculated using the following formula:\n",
+    "\n",
+    "Mean ± Z_α/2 * (Standard deviation / √n)\n",
+    "where:\n",
+    "\n",
+    "Mean is the sample mean (50).\n",
+    "Standard deviation is the sample standard deviation (5).\n",
+    "n is the sample size (unknown in this case).\n",
+    "Z_α/2 is the critical value from the standard normal distribution for a 95% confidence level, which is approximately 1.96.\n",
+    "However, without knowing the sample size (n), we cannot directly calculate the confidence interval. The formula requires n to determine the standard error of the mean (standard deviation of the sampling distribution of the mean).\n",
+    "\n",
+    "Missing Information:\n",
+    "\n",
+    "Calculating the confidence interval requires the sample size, which you haven't provided. Please provide the sample size (n) to proceed with the calculation and interpretation of the confidence interval.\n",
+    "\n",
+    "Interpretation:\n",
+    "\n",
+    "Once you provide the sample size, I can calculate the confidence interval and explain its meaning. The confidence interval represents a range of values within which the population mean is likely to lie with a 95% probability based on the sample data. In simpler terms, it tells you how certain you can be that the true population mean falls within a specific range based on the information from your sample."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "96a5af5b-974d-421f-ba57-a92d44e51ba1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Q8. What is the margin of error in a confidence interval? How does sample size affect the margin of error? Provide an example of a scenario where a larger sample size would result in a smaller margin of error.\n",
+    "\n",
+    "The margin of error is the range above and below the sample statistic within which the true population parameter is likely to fall with a specified level of confidence. It is calculated as the product of the critical value and the standard error of the statistic.\n",
+    "\n",
+    "The margin of error decreases as the sample size increases. This is because larger sample sizes provide more information about the population, leading to a more precise estimate of the population parameter.\n",
+    "\n",
+    "Example: Suppose we want to estimate the average income of households in a city. We take two random samples, one with a sample size of 100 and another with a sample size of 1000. Assuming all other factors remain constant, the margin of error for the sample with a larger sample size (1000) will be smaller compared to the sample with a smaller sample size (100)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "734b7496-887c-48ea-b313-f67036e961eb",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Q9. Z-Score Calculation and Interpretation:\n",
+    "\n",
+    "Data:\n",
+    "\n",
+    "Value: 75\n",
+    "Population mean: 70\n",
+    "Population standard deviation: 5\n",
+    "Calculation:\n",
+    "\n",
+    "z = (x - μ) / σ = (75 - 70) / 5 = 1\n",
+    "\n",
+    "Interpretation:\n",
+    "\n",
+    "The z-score is 1, indicating that the data point is 1 standard deviation above the population mean. In other words, this data point is higher than 68% of the population values based on the standard normal distribution."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "43316ec1-32ba-4279-a85f-bf09231812e8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Q10. Hypothesis Test for Weight Loss Drug:\n",
+    "\n",
+    "Null Hypothesis (H0): The drug has no significant effect on weight loss (mean weight loss is 0 pounds).\n",
+    "Alternative Hypothesis (Ha): The drug has a significant effect on weight loss (mean weight loss is not 0 pounds).\n",
+    "\n",
+    "Assumptions:\n",
+    "\n",
+    "Sample is normally distributed.\n",
+    "Sample is independent and representative of the population.\n",
+    "Procedure:\n",
+    "\n",
+    "Define alpha (significance level): 0.05 (95% confidence)\n",
+    "Calculate t-statistic: t = (x̄ - μ0) / (s / √n) = (6 - 0) / (2.5 / √50) ≈ 9.6\n",
+    "Find critical t-value for alpha and df (degrees of freedom) = n - 1 = 49: t_critical ≈ ± 1.96\n",
+    "Make a decision: Since |t| (9.6) > t_critical (1.96), reject H0.\n",
+    "Conclusion: The drug is significantly effective in promoting weight loss at the 95% confidence level.\n",
+    "\n",
+    "Considerations:\n",
+    "\n",
+    "This is a one-tailed test since we know the expected direction of the effect (weight loss).\n",
+    "Larger sample sizes would make the test more reliable."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1f5201af-c27f-4032-b382-49685ac40a09",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Q11. Confidence Interval for Job Satisfaction:\n",
+    "\n",
+    "Proportion: 65% (0.65)\n",
+    "Sample size: 500\n",
+    "Confidence level: 95%\n",
+    "\n",
+    "Calculation:\n",
+    "\n",
+    "SE = sqrt(p(1-p)/n)\n",
+    "= sqrt(0.65*0.35/500) ≈ 0.025\n",
+    "\n",
+    "Margin of error = Zα/2 * SE ≈ 1.96 * 0.025 ≈ 0.048\n",
+    "\n",
+    "Lower bound = p - ME ≈ 0.65 - 0.048 ≈ 0.602\n",
+    "Upper bound = p + ME ≈ 0.65 + 0.048 ≈ 0.698\n",
+    "Interpretation:\n",
+    "\n",
+    "We are 95% confident that the true proportion of people satisfied with their jobs lies between 60.2% and 69.8%."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4ccf3f49-3c1f-45cf-8c32-b9261da9beff",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Q12. T-Test for Teaching Methods:\n",
+    "\n",
+    "Null Hypothesis (H0): The two teaching methods have no significant difference in student performance (μA = μB).\n",
+    "Alternative Hypothesis (Ha): The two methods have a significant difference (μA ≠ μB).\n",
+    "\n",
+    "Assumptions:\n",
+    "\n",
+    "Samples are independent and normally distributed.\n",
+    "Variances are equal (homoscedasticity).\n",
+    "Procedure:\n",
+    "\n",
+    "Define alpha (significance level): 0.01 (99% confidence)\n",
+    "Calculate pooled standard deviation (Sp): Sp ≈ 5.83\n",
+    "Calculate Welch's t-statistic: t ≈ 0.50\n",
+    "Find critical t-value for alpha and df ≈ 54 (Welch's approximation): t_critical ≈ ± 2.66\n",
+    "Make a decision: Since |t| (0.50) < t_critical (2.66), fail to reject H0.\n",
+    "Conclusion: There is no significant difference in student performance between the two teaching methods at the 99% confidence level.\n",
+    "\n",
+    "Considerations:\n",
+    "\n",
+    "The equal variances assumption may not be met. Use alternative tests like the non-parametric Mann-Whitney U test if necessary.\n",
+    "Larger sample sizes could enhance the test's sensitivity."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5bc349a2-88ee-4741-ab24-9d645ae0f757",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Q13. Confidence Interval for Population Mean:\n",
+    "\n",
+    "Given:\n",
+    "\n",
+    "Population mean (μ) = 60\n",
+    "Population standard deviation (σ) = 8\n",
+    "Sample size (n) = 50\n",
+    "Sample mean (x̄) = 65\n",
+    "Confidence level = 90% (α = 0.10)\n",
+    "Solution:\n",
+    "\n",
+    "Calculate the standard error of the mean (SEM):\n",
+    "\n",
+    "SEM = σ / √n = 8 / √50 ≈ 1.131\n",
+    "\n",
+    "Find the critical t-value for a 90% confidence interval with 49 degrees of freedom (n - 1):\n",
+    "\n",
+    "Using the appropriate t-distribution table or calculator, we find t_α/2 ≈ 1.679.\n",
+    "\n",
+    "Calculate the confidence interval:\n",
+    "\n",
+    "Lower bound: x̄ - t_α/2 * SEM = 65 - 1.679 * 1.131 ≈ 62.30\n",
+    "Upper bound: x̄ + t_α/2 * SEM = 65 + 1.679 * 1.131 ≈ 67.69\n",
+    "\n",
+    "Interpretation:\n",
+    "\n",
+    "With a 90% confidence level, we can be 90% certain that the true population mean (μ) lies within the interval (62.30, 67.69). In other words, if we were to repeatedly draw samples of size 50 from this population, 90% of the time the resulting sample mean would fall within this range."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3afe657c-9d79-4e00-af43-79cd4b94e7fe",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Q14. Hypothesis Test for Caffeine Effect on Reaction Time:\n",
+    "\n",
+    "Given:\n",
+    "\n",
+    "Sample size (n) = 30\n",
+    "Sample mean (x̄) = 0.25 seconds\n",
+    "Sample standard deviation (s) = 0.05 seconds\n",
+    "Null hypothesis (H0): There is no significant effect of caffeine on reaction time (μ = μ_0, where μ_0 is the unknown population mean without caffeine).\n",
+    "Alternative hypothesis (Ha): Caffeine decreases reaction time (μ < μ_0).\n",
+    "Significance level (α) = 0.10 (90% confidence level)\n",
+    "Solution:\n",
+    "\n",
+    "Calculate the t-statistic:\n",
+    "\n",
+    "t = (x̄ - μ_0) / (s / √n) = (0.25 - μ_0) / (0.05 / √30)\n",
+    "\n",
+    "Since μ_0 is unknown, we estimate it using the sample mean under the null hypothesis (H0): μ_0 = x̄ = 0.25.\n",
+    "\n",
+    "Therefore, t = (0.25 - 0.25) / (0.05 / √30) = 0.\n",
+    "\n",
+    "Find the critical t-value for a single-tailed test with α = 0.10 and 29 degrees of freedom (n - 1):\n",
+    "\n",
+    "Using the t-distribution table or calculator, we find t_α = 1.679.\n",
+    "\n",
+    "Make a decision:\n",
+    "\n",
+    "Since the calculated t-statistic (0) is less than the critical t-value (1.679), we fail to reject the null hypothesis (H0).\n",
+    "\n",
+    "Interpretation:\n",
+    "\n",
+    "At the 90% confidence level, there is insufficient evidence to conclude that caffeine has a significant effect on reaction time in this sample. However, it's important to note that:\n",
+    "\n",
+    "We cannot definitively claim that caffeine has no effect, only that this particular sample did not provide strong enough evidence to support such a claim.\n",
+    "Larger sample sizes or different study designs might reveal a significant effect if it exists.\n",
+    "Improvements:\n",
+    "\n",
+    "This response explicitly states the assumptions required for using a t-test, such as normality of the population distribution.\n",
+    "It acknowledges the limitations of statistical tests by mentioning that non-rejection of the null hypothesis does not definitively prove its truth.\n",
+    "It considers potential improvements for future studies."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
